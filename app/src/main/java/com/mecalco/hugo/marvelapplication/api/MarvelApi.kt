@@ -20,10 +20,15 @@ interface MarvelApi {
             @Query("limit") limit: Int): Observable<Characters>
 
     //https://gateway.marvel.com/v1/public/characters/1009148?ts=1&apikey=fb9cf622de091ac20051e62a51c81149&hash=b68e7aeef8e1843eb3b2958aa737c743
-    @GET("characters/{characterId}?ts=1&apikey=fb9cf622de091ac20051e62a51c81149&hash=b68e7aeef8e1843eb3b2958aa737c743")
-    fun getCharacterDetail(@Path("characterId") characterId: Int): Flowable<Characters>
+    @GET("characters/{characterId}?ts=1&hash=b68e7aeef8e1843eb3b2958aa737c743")
+    fun getCharacterDetail(
+            @Path("characterId") characterId: Int,
+            @Query("apikey") apiKey: String): Flowable<Characters>
 
     //https://gateway.marvel.com/v1/public/characters/1010338/comics?ts=1&apikey=fb9cf622de091ac20051e62a51c81149&hash=b68e7aeef8e1843eb3b2958aa737c743
-    @GET("characters/{characterId}/comics?ts=1&apikey=fb9cf622de091ac20051e62a51c81149&hash=b68e7aeef8e1843eb3b2958aa737c743")
-    fun getComicsByCharacter(@Path("characterId") characterId: Int): Flowable<Comics>
+    @GET("characters/{characterId}/comics?ts=1&hash=b68e7aeef8e1843eb3b2958aa737c743")
+    fun getComicsByCharacter(
+            @Path("characterId") characterId: Int,
+            @Query("apikey") apiKey: String): Flowable<Comics>
+
 }

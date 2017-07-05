@@ -32,14 +32,18 @@ open class MainAdapter @Inject constructor(val mContext: Context) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapterViewHolder {
-        val binding = DataBindingUtil.inflate<CharacterItemLayoutBinding>(LayoutInflater.from(parent.context), R.layout.character_item_layout, parent, false)
+        val binding = DataBindingUtil.inflate<CharacterItemLayoutBinding>(
+                LayoutInflater.from(parent.context),
+                R.layout.character_item_layout,
+                parent,
+                false)
         return MainAdapterViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MainAdapterViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: MainAdapterViewHolder, position: Int) {
         val itemCharacter = mCharacters[position]
-        holder?.update(itemCharacter)
-        holder?.mBindingCharacter!!.characterImage.setOnClickListener {
+        holder.update(itemCharacter)
+        holder.mBindingCharacter.characterImage.setOnClickListener {
             val intent = Intent(mContext, DetailActivity::class.java)
             intent.putExtra("characterID", itemCharacter.id)
             intent.putExtra("characterName", itemCharacter.name)

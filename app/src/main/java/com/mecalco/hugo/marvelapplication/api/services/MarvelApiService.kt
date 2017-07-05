@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers
     }
 
     fun getHeroDetail(callback: GetCharactersListCallback, characterID: Int): Disposable {
-        return mMarvelApi.getCharacterDetail(characterID)
+        return mMarvelApi.getCharacterDetail(characterID, BuildConfig.PUBLIC_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ character: Characters ->
@@ -42,7 +42,7 @@ import io.reactivex.schedulers.Schedulers
     }
 
     fun getComicsByCharacterId(callback: GetComicsByCharacterCallBack, characterID: Int) : Disposable{
-        return mMarvelApi.getComicsByCharacter(characterID)
+        return mMarvelApi.getComicsByCharacter(characterID, BuildConfig.PUBLIC_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({comics: Comics ->

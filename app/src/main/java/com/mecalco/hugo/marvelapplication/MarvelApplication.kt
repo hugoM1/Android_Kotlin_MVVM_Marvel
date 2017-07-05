@@ -13,14 +13,13 @@ import java.io.File
 class MarvelApplication : Application() {
 
     companion object {
-        @JvmStatic
         lateinit var mAppComponent: AppComponent
     }
 
     override fun onCreate() {
         super.onCreate()
 
-        // initialize
+        // initialize dependency injection
         val cacheFile = File(cacheDir, "heroesCache")
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))

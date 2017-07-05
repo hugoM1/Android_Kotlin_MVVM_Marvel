@@ -20,4 +20,5 @@ interface AppComponent {
     fun inject(mainActivityViewModel: MainActivityViewModel)
 
     fun inject(detailAcivityViewModel: DetailActivityViewModel)
+
 }
