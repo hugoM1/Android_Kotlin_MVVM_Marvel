@@ -20,16 +20,10 @@ open class MainAdapter @Inject constructor(val mContext: Context) :
         RecyclerView.Adapter<MainAdapter.MainAdapterViewHolder>() {
 
     var mCharacters: List<Characters.DataBean.ResultsBean> = emptyList()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-
-    // no longer needed because I have overriding set() method
-    fun setData(items: List<Characters.DataBean.ResultsBean>) {
-        mCharacters = items
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainAdapterViewHolder {
         val binding = DataBindingUtil.inflate<CharacterItemLayoutBinding>(

@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:scaleType="fitXY"
-            app:loadImage="@{heroDetail}" />
+            app:imageExtension="@{heroDetail.thumbnail.extension}"
+            app:imageUrl="@{heroDetail.thumbnail.path}"/>
 
         <TextView
             android:id="@+id/heroDetailText"

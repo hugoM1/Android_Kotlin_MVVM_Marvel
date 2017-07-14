@@ -1,5 +1,7 @@
 package com.mecalco.hugo.marvelapplication.ui.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -7,12 +9,14 @@ import android.view.ViewGroup
 import com.mecalco.hugo.marvelapplication.R
 import com.mecalco.hugo.marvelapplication.databinding.ComicItemLayoutBinding
 import com.mecalco.hugo.marvelapplication.model.Comics
+import com.mecalco.hugo.marvelapplication.ui.activities.ComicDetailActivity
+import javax.inject.Inject
 
 /**
  * @author by hugo on 6/28/17.
  */
 
-class ComicsAdapter : RecyclerView.Adapter<ComicsAdapter.ComicsAdapterViewHolder>() {
+class ComicsAdapter @Inject constructor(val mContext: Context) : RecyclerView.Adapter<ComicsAdapter.ComicsAdapterViewHolder>() {
 
     var mComics: List<Comics.DataBean.ResultsBean> = emptyList()
     set(value) {
@@ -33,9 +37,16 @@ class ComicsAdapter : RecyclerView.Adapter<ComicsAdapter.ComicsAdapterViewHolder
         return ComicsAdapterViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ComicsAdapterViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ComicsAdapterViewHolder, position: Int) {
         val itemComic = mComics[position]
-        holder?.update(itemComic)
+        holder.update(itemComic)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(mContext, ComicDetailActivity::class.java)
+            intent.putExtra("comicID", itemComic.id)
+            intent.putExtra("comicTitle", itemComic.title)
+            mContext.startActivity(intent)
+        }
+
     }
 
     class ComicsAdapterViewHolder(val mBindingComicItemLayoutBinding: ComicItemLayoutBinding) :

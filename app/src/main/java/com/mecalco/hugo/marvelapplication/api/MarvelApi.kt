@@ -31,4 +31,10 @@ interface MarvelApi {
             @Path("characterId") characterId: Int,
             @Query("apikey") apiKey: String): Flowable<Comics>
 
+    //https://gateway.marvel.com/v1/public/comics/61431?ts=1&apikey=fb9cf622de091ac20051e62a51c81149&hash=b68e7aeef8e1843eb3b2958aa737c743
+    @GET("comics/{comicId}?ts=1&hash=b68e7aeef8e1843eb3b2958aa737c743")
+    fun getComicDetail(
+            @Path("comicId") comicId: Int,
+            @Query("apikey") apiKey: String): Flowable<Comics>
+
 }

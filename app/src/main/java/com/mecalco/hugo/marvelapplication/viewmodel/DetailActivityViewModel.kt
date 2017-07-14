@@ -24,7 +24,7 @@ class DetailActivityViewModel: BaseViewModel<DetailActivityView>() {
 
     fun getDetails(characterID : Int){
         mCompositeDisposable.add(mService.getHeroDetail(
-                callback = object : MarvelApiService.GetCharactersListCallback {
+                callback = object : MarvelApiService.GetCharactersCallback {
                     override fun onNext(characters: Characters) {
                         mView?.loadHeroDetails(characters.data?.results!![0])
                     }
@@ -41,7 +41,7 @@ class DetailActivityViewModel: BaseViewModel<DetailActivityView>() {
 
     fun getComics(characterID : Int){
         mCompositeDisposable.add(mService.getComicsByCharacterId(
-                callback = object : MarvelApiService.GetComicsByCharacterCallBack{
+                callback = object : MarvelApiService.GetComicsCallBack {
                     override fun onNext(comics: Comics) {
                         mView?.loadCharacterComics(comics)
                     }

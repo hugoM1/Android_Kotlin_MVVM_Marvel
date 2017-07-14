@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
  */
  class MarvelApiService(val mMarvelApi: MarvelApi) {
 
-    fun getHeroesList(callback: GetCharactersListCallback): Disposable {
+    fun getHeroesList(callback: GetCharactersCallback): Disposable {
         return mMarvelApi.getCharactersList(BuildConfig.PUBLIC_KEY, BuildConfig.LIMIT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -27,7 +27,7 @@ import io.reactivex.schedulers.Schedulers
                 })
     }
 
-    fun getHeroDetail(callback: GetCharactersListCallback, characterID: Int): Disposable {
+    fun getHeroDetail(callback: GetCharactersCallback, characterID: Int): Disposable {
         return mMarvelApi.getCharacterDetail(characterID, BuildConfig.PUBLIC_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -41,7 +41,7 @@ import io.reactivex.schedulers.Schedulers
                 })
     }
 
-    fun getComicsByCharacterId(callback: GetComicsByCharacterCallBack, characterID: Int) : Disposable{
+    fun getComicsByCharacterId(callback: GetComicsCallBack, characterID: Int) : Disposable{
         return mMarvelApi.getComicsByCharacter(characterID, BuildConfig.PUBLIC_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -55,13 +55,27 @@ import io.reactivex.schedulers.Schedulers
                 })
     }
 
-    interface GetCharactersListCallback {
+    fun getComicDetail(callback: GetComicsCallBack, comicID: Int): Disposable{
+        return mMarvelApi.getComicDetail(comicID, BuildConfig.PUBLIC_KEY)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({comic: Comics ->
+                    if(comic.data != null){
+                        callback.onNext(comic)
+                        callback.onCompleted()
+                    }else{
+                        callback.onError(Throwable("Something went wrong getting Comic"))
+                    }
+                })
+    }
+
+    interface GetCharactersCallback {
         fun onNext(characters: Characters)
         fun onError(networkError: Throwable)
         fun onCompleted()
     }
 
-    interface GetComicsByCharacterCallBack{
+    interface GetComicsCallBack {
         fun onNext(comics: Comics)
         fun onError(networkError: Throwable)
         fun onCompleted()

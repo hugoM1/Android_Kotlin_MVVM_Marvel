@@ -41,7 +41,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, DetailActivityViewMod
         toolbar?.setDisplayHomeAsUpEnabled(true)
         toolbar?.title = mIntentExtras.getString("characterName")
 
-        mComicAdapter = ComicsAdapter()
+        mComicAdapter = ComicsAdapter(this)
         mBinding.comicsList.adapter = mComicAdapter
 
         mBinding.empty.visibility = View.VISIBLE

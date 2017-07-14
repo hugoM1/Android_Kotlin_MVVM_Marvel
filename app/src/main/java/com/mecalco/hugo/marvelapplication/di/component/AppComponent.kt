@@ -3,6 +3,7 @@ package com.mecalco.hugo.marvelapplication.di.component
 import com.mecalco.hugo.marvelapplication.di.module.AppModule
 import com.mecalco.hugo.marvelapplication.di.module.NetworkModule
 import com.mecalco.hugo.marvelapplication.ui.activities.MainActivity
+import com.mecalco.hugo.marvelapplication.viewmodel.ComicDetailActivityViewModel
 import com.mecalco.hugo.marvelapplication.viewmodel.DetailActivityViewModel
 import com.mecalco.hugo.marvelapplication.viewmodel.MainActivityViewModel
 import dagger.Component
@@ -20,5 +21,7 @@ interface AppComponent {
     fun inject(mainActivityViewModel: MainActivityViewModel)
 
     fun inject(detailAcivityViewModel: DetailActivityViewModel)
+
+    fun inject(comicDetailActivityViewModel: ComicDetailActivityViewModel)
 
 }

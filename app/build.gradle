@@ -90,4 +90,5 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }
