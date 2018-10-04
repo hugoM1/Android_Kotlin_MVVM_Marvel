@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.characters.HeroesListActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,12 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.DetailActivity"
-            android:parentActivityName=".ui.activities.MainActivity"
+            android:name=".ui.characterdetail.HeroDetailActivity"
+            android:parentActivityName=".ui.characters.HeroesListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activities.ComicDetailActivity"
-            android:parentActivityName=".ui.activities.MainActivity"
+            android:name=".ui.comicdetail.ComicDetailActivity"
+            android:parentActivityName=".ui.characters.HeroesListActivity"
             android:screenOrientation="portrait" />
     </application>
 

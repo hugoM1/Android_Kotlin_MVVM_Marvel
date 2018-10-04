@@ -1,4 +1,4 @@
-package com.mecalco.hugo.marvelapplication.ui.adapters
+package com.mecalco.hugo.marvelapplication.ui.characters
 
 import android.content.Context
 import android.content.Intent
@@ -9,15 +9,15 @@ import android.view.ViewGroup
 import com.mecalco.hugo.marvelapplication.R
 import com.mecalco.hugo.marvelapplication.databinding.CharacterItemLayoutBinding
 import com.mecalco.hugo.marvelapplication.model.Characters
-import com.mecalco.hugo.marvelapplication.ui.activities.DetailActivity
+import com.mecalco.hugo.marvelapplication.ui.characterdetail.HeroDetailActivity
 import javax.inject.Inject
 
 /**
  * @author by hugo on 6/5/17.
  */
 
-open class MainAdapter @Inject constructor(val mContext: Context) :
-        RecyclerView.Adapter<MainAdapter.MainAdapterViewHolder>() {
+open class HeroesListAdapter @Inject constructor(val mContext: Context) :
+        RecyclerView.Adapter<HeroesListAdapter.MainAdapterViewHolder>() {
 
     var mCharacters: List<Characters.DataBean.ResultsBean> = emptyList()
         set(value) {
@@ -38,7 +38,7 @@ open class MainAdapter @Inject constructor(val mContext: Context) :
         val itemCharacter = mCharacters[position]
         holder.update(itemCharacter)
         holder.mBindingCharacter.characterImage.setOnClickListener {
-            val intent = Intent(mContext, DetailActivity::class.java)
+            val intent = Intent(mContext, HeroDetailActivity::class.java)
             intent.putExtra("characterID", itemCharacter.id)
             intent.putExtra("characterName", itemCharacter.name)
             mContext.startActivity(intent)

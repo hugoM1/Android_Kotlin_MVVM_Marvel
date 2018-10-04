@@ -1,4 +1,4 @@
-package com.mecalco.hugo.marvelapplication.ui.adapters
+package com.mecalco.hugo.marvelapplication.ui.characterdetail
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.mecalco.hugo.marvelapplication.R
 import com.mecalco.hugo.marvelapplication.databinding.ComicItemLayoutBinding
 import com.mecalco.hugo.marvelapplication.model.Comics
-import com.mecalco.hugo.marvelapplication.ui.activities.ComicDetailActivity
+import com.mecalco.hugo.marvelapplication.ui.comicdetail.ComicDetailActivity
 import javax.inject.Inject
 
 /**

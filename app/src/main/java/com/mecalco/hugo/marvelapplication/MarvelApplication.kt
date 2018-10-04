@@ -1,10 +1,11 @@
 package com.mecalco.hugo.marvelapplication
 
+import android.annotation.SuppressLint
 import android.app.Application
-import com.mecalco.hugo.marvelapplication.di.component.AppComponent
-import com.mecalco.hugo.marvelapplication.di.component.DaggerAppComponent
-import com.mecalco.hugo.marvelapplication.di.module.AppModule
-import com.mecalco.hugo.marvelapplication.di.module.NetworkModule
+import android.content.Context
+import com.mecalco.hugo.marvelapplication.di.appModule
+
+import org.koin.android.ext.android.startKoin
 import java.io.File
 
 /**
@@ -13,7 +14,9 @@ import java.io.File
 class MarvelApplication : Application() {
 
     companion object {
-        lateinit var mAppComponent: AppComponent
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
+            private set
     }
 
     override fun onCreate() {
@@ -21,10 +24,10 @@ class MarvelApplication : Application() {
 
         // initialize dependency injection
         val cacheFile = File(cacheDir, "heroesCache")
-        mAppComponent = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .networkModule(NetworkModule(cacheFile))
-                .build()
+        startKoin(this, appModule)
+
     }
+
+
 
 }

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.activities.MainActivity">
+        tools:context=".ui.characters.HeroesListActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
@@ -38,7 +38,7 @@
             android:orientation="vertical">
 
             <ProgressBar
-                android:id="@android:id/empty"
+                android:id="@+id/empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
