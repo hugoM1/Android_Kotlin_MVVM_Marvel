@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.mecalco.hugo.marvelapplication.ui.activities.ComicDetailActivity">
+        tools:context="com.mecalco.hugo.marvelapplication.ui.comicdetail.ComicDetailActivity">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"

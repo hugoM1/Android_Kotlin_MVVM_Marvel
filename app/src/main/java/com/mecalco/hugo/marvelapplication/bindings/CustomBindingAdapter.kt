@@ -1,4 +1,4 @@
-package com.mecalco.hugo.marvelapplication.ui.adapters
+package com.mecalco.hugo.marvelapplication.bindings
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView
