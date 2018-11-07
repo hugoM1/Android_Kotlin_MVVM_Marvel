@@ -7,7 +7,7 @@ import org.koin.dsl.module.applicationContext
 
 
 val uiModule = applicationContext {
-viewModel { HeroesListActivityViewModel(get(), get(), get()) }
+    viewModel { HeroesListActivityViewModel(get(), get(), get()) }
     viewModel { HeroDetailActivityViewModel(get(), get(), get()) }
 
 }

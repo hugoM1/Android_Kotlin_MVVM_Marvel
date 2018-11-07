@@ -15,7 +15,7 @@ val executorModule = applicationContext {
 }
 
 private fun getMainThreadExecutor(): Executor {
-    return object: Executor {
+    return object : Executor {
         private val mainThreadHandler = Handler(Looper.getMainLooper())
 
         override fun execute(command: Runnable) {

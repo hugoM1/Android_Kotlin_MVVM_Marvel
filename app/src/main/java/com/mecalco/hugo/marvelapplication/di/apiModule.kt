@@ -23,7 +23,7 @@ val apiModule = applicationContext {
 
 }
 
-private fun getOkHttpClient(context:Application): OkHttpClient {
+private fun getOkHttpClient(context: Application): OkHttpClient {
     var cache: Cache? = null
     try {
         val cacheFile = File(context.cacheDir, "heroesCache")
@@ -47,7 +47,7 @@ private fun getOkHttpClient(context:Application): OkHttpClient {
 //                    // Customize or return the response
 //                    response
 //                }
-                 .cache(cache)
+            .cache(cache)
             .connectTimeout(5, TimeUnit.MINUTES)
             .readTimeout(5, TimeUnit.MINUTES)
             .writeTimeout(5, TimeUnit.MINUTES)

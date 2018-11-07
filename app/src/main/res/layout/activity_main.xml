@@ -31,6 +31,7 @@
 
         </android.support.design.widget.AppBarLayout>
 
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,15 +45,67 @@
                 android:layout_gravity="center"
                 android:indeterminate="true"
                 android:visibility="invisible"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/sort_by_date"
+                        android:textSize="18sp"
+                        android:layout_marginRight="10dp"
+                        android:textStyle="bold"
+                        android:text="Sort By :"/>
+                    <TextView
+                        android:id="@+id/sort_by_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:layout_marginRight="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_toLeftOf="@+id/seperator"
+                        android:text="Date"/>
+                    <TextView
+                        android:id="@+id/seperator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/sort_by_name"
+                        android:text="|"/>
+                    <TextView
+                        android:id="@+id/sort_by_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:textColor="@android:color/white"
+                        android:text="Name"/>
+
+
+
+                </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/photosList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="true"
-                android:scrollbarStyle="outsideOverlay"
-                android:scrollbars="vertical"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"/>
+            </LinearLayout>
 
         </FrameLayout>
 

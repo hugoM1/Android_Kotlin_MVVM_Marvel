@@ -33,6 +33,15 @@ data class Characters constructor(var code: Int = 0,
             var events: EventsBean? = null
             var urls: List<UrlsBean>? = null
 
+            constructor(id: Int, name: String?, description: String?, modified: String?, thumbnail: ThumbnailBean?) {
+                this.id = id
+                this.name = name
+                this.description = description
+                this.modified = modified
+                this.thumbnail = thumbnail
+            }
+
+
             class ThumbnailBean {
                 /**
                  * path : http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784

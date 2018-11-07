@@ -6,13 +6,13 @@ import java.util.concurrent.Executor
 /**
  * Global executor pools for the whole application.
  */
-class AppExecutors(private val diskIO: Executor, private val networkIO: Executor, private val main: Executor) {
+class AppExecutors( val diskIO: Executor,  val networkIO: Executor,  val main: Executor) {
 
-    fun disk():Executor {
+    fun diskIO():Executor {
         return diskIO
     }
 
-    fun network():Executor{
+    fun networkIO():Executor{
         return networkIO
     }
 
