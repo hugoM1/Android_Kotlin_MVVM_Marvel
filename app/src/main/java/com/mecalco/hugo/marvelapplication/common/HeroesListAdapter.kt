@@ -11,7 +11,7 @@ import com.mecalco.hugo.marvelapplication.databinding.CharacterItemLayoutBinding
 import com.mecalco.hugo.marvelapplication.model.Characters
 
 
-class HeroesListAdapter(appExecutors: AppExecutors) : DataBoundListAdapter<Characters.DataBean.ResultsBean, CharacterItemLayoutBinding>(
+class HeroesListAdapter(appExecutors: AppExecutors,private val itemClickCallback: ((CharacterItemLayoutBinding,Characters.DataBean.ResultsBean) -> Unit)?) : DataBoundListAdapter<Characters.DataBean.ResultsBean, CharacterItemLayoutBinding>(
         appExecutors = appExecutors,
         diffCallback = object : DiffUtil.ItemCallback<Characters.DataBean.ResultsBean>() {
             override fun areItemsTheSame(oldItem: Characters.DataBean.ResultsBean, newItem: Characters.DataBean.ResultsBean): Boolean {
@@ -29,6 +29,9 @@ class HeroesListAdapter(appExecutors: AppExecutors) : DataBoundListAdapter<Chara
 
     override fun bind(binding: CharacterItemLayoutBinding, item: Characters.DataBean.ResultsBean) {
         binding.character = item
+        binding.root.setOnClickListener{
+            itemClickCallback?.invoke(binding,item)
+        }
         binding.executePendingBindings()
     }
 }

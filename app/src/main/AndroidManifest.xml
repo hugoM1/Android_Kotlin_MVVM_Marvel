@@ -15,8 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.characters.HeroesListActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait">
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +24,10 @@
         </activity>
         <activity
             android:name=".ui.characterdetail.HeroDetailActivity"
-            android:parentActivityName=".ui.characters.HeroesListActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName=".ui.characters.HeroesListActivity"/>
         <activity
             android:name=".ui.comicdetail.ComicDetailActivity"
-            android:parentActivityName=".ui.characters.HeroesListActivity"
-            android:screenOrientation="portrait" />
+            android:parentActivityName=".ui.characters.HeroesListActivity"/>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ class HeroesListActivityViewModel(appContext: Context, appExecutors: AppExecutor
     var heroList = MutableLiveData<List<Characters.DataBean.ResultsBean>>()
     var error = MutableLiveData<Throwable>()
     var sortByDate = MutableLiveData<Boolean>()
-    var currentList  = ArrayList<Characters.DataBean.ResultsBean> ()
+    var currentList = ArrayList<Characters.DataBean.ResultsBean>()
 
 
     fun getHeroes() {
@@ -29,7 +29,7 @@ class HeroesListActivityViewModel(appContext: Context, appExecutors: AppExecutor
             override fun onNext(characters: Characters) {
                 sortByDate.postValue(true)
                 currentList = characters.data?.results as ArrayList<Characters.DataBean.ResultsBean>
-                heroList.postValue(currentList )
+                heroList.postValue(currentList)
             }
 
             override fun onError(networkError: Throwable) {
@@ -41,16 +41,39 @@ class HeroesListActivityViewModel(appContext: Context, appExecutors: AppExecutor
             }
         }))
     }
+
     fun getHeroesByName() {
         val characters = heroList.value;
         val items = ArrayList<Characters.DataBean.ResultsBean>()
         items += (characters as ArrayList)
-       sortByName(items)
+        sortByName(items)
 
         heroList.postValue(items)
     }
 
-    private fun sortByName( items:ArrayList<Characters.DataBean.ResultsBean>) {
+    fun getHerosByDate() {
+        if (currentList.isNotEmpty()) {
+            heroList.postValue(currentList)
+        }
+    }
+
+    fun addItem() {
+        val characters = heroList.value;
+        val items = ArrayList<Characters.DataBean.ResultsBean>()
+        items += (characters as ArrayList)
+        items.add(1, Characters.DataBean.ResultsBean(0, "Not Defined", "", "", null))
+        heroList.postValue(items)
+    }
+
+    fun deletItem() {
+        val characterList = heroList.value as? ArrayList<Characters.DataBean.ResultsBean>
+        val items = ArrayList<Characters.DataBean.ResultsBean>()
+        items += (characterList as ArrayList)
+        items.removeAt(1)
+        heroList.postValue(items)
+    }
+
+    private fun sortByName(items: ArrayList<Characters.DataBean.ResultsBean>) {
         Collections.sort(items) { lhs, rhs ->
             var l = Character.toUpperCase(lhs.name!!.toCharArray()[0])
 
@@ -72,34 +95,9 @@ class HeroesListActivityViewModel(appContext: Context, appExecutors: AppExecutor
         }
     }
 
-    fun getHerosByDate() {
-        if(currentList.isNotEmpty()) {
-            heroList.postValue(currentList)
-        }
-    }
-
-
-
 
     companion object {
         val TAG = HeroesListActivityViewModel::class.java.toString()
-    }
-
-    fun addItem() {
-
-        val characters = heroList.value;
-        val items = ArrayList<Characters.DataBean.ResultsBean>()
-        items += (characters as ArrayList)
-        items.add(1, Characters.DataBean.ResultsBean(0,"Not Defined","","",null))
-        heroList.postValue(items)
-    }
-
-    fun deletItem() {
-        val characterList = heroList.value as? ArrayList<Characters.DataBean.ResultsBean>
-        val items = ArrayList<Characters.DataBean.ResultsBean>()
-        items += (characterList as ArrayList)
-        items.removeAt(1)
-        heroList.postValue(items)
     }
 
 

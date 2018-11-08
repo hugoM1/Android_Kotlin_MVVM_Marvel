@@ -1,16 +1,22 @@
 package com.mecalco.hugo.marvelapplication.ui.characters
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.mecalco.hugo.marvelapplication.R
 import com.mecalco.hugo.marvelapplication.base.BaseActivity
 import com.mecalco.hugo.marvelapplication.base.VMActivity
 import com.mecalco.hugo.marvelapplication.common.HeroesListAdapter
+import com.mecalco.hugo.marvelapplication.databinding.CharacterItemLayoutBinding
+import com.mecalco.hugo.marvelapplication.model.Characters
+import com.mecalco.hugo.marvelapplication.ui.characterdetail.HeroDetailActivity
+import com.mecalco.hugo.marvelapplication.ui.characterdetail.HeroDetailActivity.Companion.CHARACTER_NAME
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 
@@ -35,13 +41,13 @@ class HeroesListActivity : BaseActivity<HeroesListActivityViewModel>(HeroesListA
     }
 
     private val mHeroesListAdapter: HeroesListAdapter by lazy {
-        HeroesListAdapter(viewModel.executors())
+        HeroesListAdapter(viewModel.executors(), this::launchItem)
     }
 
 
     override fun setupViews(view: View) {
         setSupportActionBar(view.toolbar)
-        view.photosList.layoutManager = GridLayoutManager(this, 2)
+        view.photosList.layoutManager = GridLayoutManager(this, resources.getInteger(R.integer.items_per_row))
         view.photosList.adapter = mHeroesListAdapter
         empty.visibility = View.VISIBLE
         sort_by_date.setOnClickListener(onClickListener)
@@ -79,6 +85,17 @@ class HeroesListActivity : BaseActivity<HeroesListActivityViewModel>(HeroesListA
             Log.e(TAG, throwable?.message)
         })
 
+    }
+
+    private fun launchItem(binding: CharacterItemLayoutBinding, item: Characters.DataBean.ResultsBean) {
+        if (item.id == null || item.id == 0) {
+            Toast.makeText(this, "Item does not have details", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val intent = Intent(this, HeroDetailActivity::class.java)
+        intent.putExtra(HeroDetailActivity.CHARACTER_ID, item.id)
+        intent.putExtra(CHARACTER_NAME, item.name)
+        startActivity(intent)
     }
 
 
